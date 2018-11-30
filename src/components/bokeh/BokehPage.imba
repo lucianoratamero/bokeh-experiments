@@ -5,7 +5,7 @@ import './BokehPage.scss'
 export tag BokehPage < canvas
 
   prop spawningChance
-  prop decay default: 0.4 # recommended: anything between 0.6 and 1.6
+  prop decay default: 1
   prop framesPerSecond default: 60
   prop currentNodes default: []
   prop numberOfCircles default: (window:innerWidth / window:innerHeight) * 200
@@ -52,7 +52,7 @@ export tag BokehPage < canvas
   def render
     <self height=window:innerHeight width=window:innerWidth>
       if @currentNodes:length < @numberOfCircles && Math.random < @spawningChance
-        @currentNodes.push {
+        @currentNodes.unshift {
           size: 1,
           opacity: 1,
           color: _getCircleBgColor,
